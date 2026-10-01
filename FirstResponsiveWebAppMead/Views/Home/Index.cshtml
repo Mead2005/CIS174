@@ -1,0 +1,36 @@
+﻿@model FirstResponsiveWebAppMead.Models.Person
+
+@{
+    ViewData["Title"] = "Age Calculator";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Age Calculator</h1>
+    
+    <form asp-action="Index" method="post">
+        <div>
+        <label>Name:</label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+        </div>
+
+        <div>
+        <label>Birth year</label>
+        <input asp-for="BirthYear" type="number" />
+        <span asp-validation-for="BirthYear"></span>
+        </div>
+
+        <div>
+        <button type="submit">Submit</button>
+        <a asp-action="Index">Clear</a>
+        </div>
+    </form>
+
+    @if (Model != null && Model.Name != "")
+    {
+        <h2>
+        @Model.Name, you will be @Model.AgeThisYear() years old by December 31st of this year.
+        </h2>
+    }
+    
+</div>
