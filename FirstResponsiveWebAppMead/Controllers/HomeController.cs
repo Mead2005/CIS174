@@ -18,15 +18,22 @@ namespace FirstResponsiveWebAppMead.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult AgeCalculator()
+        {
+            return View("~/Views/AgeCalculator/Index.cshtml");
+        }
+
         [HttpPost]
-        public IActionResult Index(Person person)
+        public IActionResult AgeCalculator(Person person)
         {
             if (person.BirthYear <= 0)
             {
                 ModelState.AddModelError("BirthYear", "Enter birth year.");
             }
 
-            return View(person);
+            return View("~/Views/AgeCalculator/Index.cshtml", person);
         }
 
         public IActionResult Privacy()
