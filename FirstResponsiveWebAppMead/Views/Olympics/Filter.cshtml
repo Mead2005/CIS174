@@ -1,0 +1,59 @@
+﻿@model List<FirstResponsiveWebAppMead.Models.OlympicCountry>
+
+@{
+    ViewData["Title"] = "Filtered Olympic Flags";
+}
+
+<link rel="stylesheet" href="~/css/olympics.css" />
+
+<div class="olympics">
+    <aside>
+        <h3>Filter by Game</h3>
+
+        <a asp-action="Filter" asp-route-game="ALL">ALL</a>
+        <a asp-action="Filter" asp-route-game="Summer Olympics">Summer Olympics</a>
+        <a asp-action="Filter" asp-route-game="Winter Olympics">Winter Olympics</a>
+        <a asp-action="Filter" asp-route-game="Paralympics">Paralympics</a>
+        <a asp-action="Filter" asp-route-game="Youth Olympic Games">Youth Olympic Games</a>
+
+        <h3>Filter by Sport Catagory</h3>
+
+        <a asp-action="Filter" asp-route-game="@ViewBag.Game" asp-route-category="ALL">ALL</a>
+        <a asp-action="Filter" asp-route-game="@ViewBag.Game" asp-route-category="Curling">Curling</a>
+        <a asp-action="Filter" asp-route-game="@ViewBag.Game" asp-route-category="Bobsleigh">Bobsleigh</a>
+        <a asp-action="Filter" asp-route-game="@ViewBag.Game" asp-route-category="Diving">Diving</a>
+        <a asp-action="Filter" asp-route-game="@ViewBag.Game" asp-route-category="Road Cycling">Road Cycling</a>
+        <a asp-action="Filter" asp-route-game="@ViewBag.Game" asp-route-category="Cycling">Cycling</a>
+        <a asp-action="Filter" asp-route-game="@ViewBag.Game" asp-route-category="Archery">Archery</a>
+        <a asp-action="Filter" asp-route-game="@ViewBag.Game" asp-route-category="Canoe Sprint">Canoe Sprint</a>
+        <a asp-action="Filter" asp-route-game="@ViewBag.Game" asp-route-category="Breakdancing">Breakdancing</a>
+        <a asp-action="Filter" asp-route-game="@ViewBag.Game" asp-route-category="Skateboarding">Skateboarding</a>
+
+        <a asp-action="Index">Back to Front Page</a>
+    </aside>
+
+    <main>
+        <h1>Olympic Flags</h1>
+        <p>Game: @ViewBag.Game | Category: @ViewBag.Category</p>
+
+        <div class="grid">
+            @foreach (var country in Model)
+            {
+                <div class="flag-card">
+                    <img src="@country.FlagImage"
+                         alt="@country.CountryName flag"
+                         title="@country.CountryName | @country.Game | @country.Category"
+                         class="flag" />
+
+                    <p>@country.CountryName</p>
+                </div>
+            }
+        </div>
+
+        @if (Model.Count == 0)
+        {
+            <p>No countries match these filters.</p>
+        }
+    </main>
+
+</div>

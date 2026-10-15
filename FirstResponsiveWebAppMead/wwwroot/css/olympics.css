@@ -1,0 +1,30 @@
+﻿.olympics {
+    display: flex;
+    gap: 30px;
+}
+
+aside {
+    min-width: 180px;
+}
+
+    aside a {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.flag-card {
+    width: 150px;
+    text-align: center;
+}
+
+.flag {
+    width: 80px;
+    height: 55px;
+    object-fit: contain;
+}
