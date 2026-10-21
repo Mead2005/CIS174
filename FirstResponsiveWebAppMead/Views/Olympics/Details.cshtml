@@ -1,0 +1,27 @@
+﻿@model FirstResponsiveWebAppMead.Models.OlympicCountry
+
+@{
+    ViewData["Title"] = "Country Details";
+}
+
+<link rel="stylesheet" href="~/css/olympics.css" />
+
+<h1>@Model.CountryName</h1>
+
+<img src="@Model.FlagImage"
+     alt="@Model.CountryName flag"
+     width="160" />
+
+<p>Game: @Model.Game</p>
+<p>Sport: @Model.Category</p>
+
+<form asp-controller="Favorites" asp-action="Add" method="post">
+    <input type="hidden" name="countryName" value="@Model.CountryName" />
+    <button type="submit">Add to Favorites</button>
+</form>
+
+<p>
+    <a asp-controller="Olympics" asp-action="Index">
+        Return to Home Page
+    </a>
+</p>

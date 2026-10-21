@@ -1,0 +1,42 @@
+﻿@model List<FirstResponsiveWebAppMead.Models.OlympicCountry>
+
+@{
+    ViewData["Title"] = "My Favorites";
+}
+
+<link rel="stylesheet" href="~/css/olympics.css" />
+
+<h1>My Favorite Olympic Countries</h1>
+
+@if (Model.Count == 0)
+{
+    <p>You have have not added any favorite countries yet.</p>
+}
+else
+{
+    <div class="grid">
+        @foreach (var country in Model)
+        {
+            <div class="flag-card">
+                <img src="@country.FlagImage"
+                     alt="@country.CountryName flag"
+                     title="@country.CountryName | @country.Game | @country.Category"
+                     class="flag" />
+
+                <p>@country.CountryName</p>
+                <p>@country.Game</p>
+                <p>@country.Category</p>
+            </div>
+        }
+    </div>
+
+    <form asp-controller="Favorites" asp-action="Clear" method="post">
+        <button type="submit">Clear Favorites</button>
+    </form>
+}
+
+<p>
+    <a asp-controller="Olympics" asp-action="Index">
+        Return to Home Page
+    </a>
+</p>

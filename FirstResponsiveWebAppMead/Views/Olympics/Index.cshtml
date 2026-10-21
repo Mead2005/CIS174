@@ -29,6 +29,12 @@
         <a asp-action="Filter" asp-route-game="@ViewBag.Game" asp-route-category="Breakdancing">Breakdancing</a>
         <a asp-action="Filter" asp-route-game="@ViewBag.Game" asp-route-category="Skateboarding">Skateboarding</a>
 
+        <h3>Favorites</h3>
+
+        <a asp-controller="Favorites" asp-action="Index">
+            Favorites
+        </a>
+
     </aside>
 
     <main>
@@ -39,10 +45,14 @@
             @foreach (var country in Model)
             {
                 <div class="flag-card">
-                    <img src="@country.FlagImage"
-                         alt="@country.CountryName flag"
-                         title="@country.CountryName | @country.Game | @country.Category"
-                         class="flag" />
+                    <a asp-controller="Olympics"
+                        asp-action="Details"
+                        asp-route-countryName="@country.CountryName">
+                        <img src="@country.FlagImage"
+                            alt="@country.CountryName flag"
+                            title="@country.CountryName | @country.Game | @country.Category"
+                            class="flag" />
+                    </a>
 
                     <p>@country.CountryName</p>
                 </div>
