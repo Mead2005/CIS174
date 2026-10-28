@@ -4,38 +4,30 @@ using Microsoft.AspNetCore.Mvc;
 namespace FirstResponsiveWebAppMead.Controllers
 {
     public class OlympicsController : Controller
-    {
-        public IActionResult Index()
-        {
-            var countries = OlympicCountryData.GetCountries()
-                .OrderBy(c => c.CountryName)
-                .ToList();
-
-            return View(countries);
-        }
-            
-        public IActionResult Filter(string game = "ALL", string category = "ALL")
+    {        
+        public IActionResult Index(OlympicsViewModel model)
         {
             var countries = OlympicCountryData.GetCountries();
 
-            if (game != "ALL")
+            if (model.Game != "ALL")
             {
                 countries = countries
-                    .Where(c => c.Game == game)
+                    .Where(c => c.Game == model.Game)
                     .ToList();
             }
 
-            if (category != "ALL")
+            if (model.Category != "ALL")
             {
                 countries = countries
-                    .Where(c => c.Category == category)
+                    .Where(c => c.Category == model.Category)
                     .ToList();
             }
 
-            ViewBag.Game = game;
-            ViewBag.Category = category;
+            model.Countries = countries
+                .OrderBy(c => c.CountryName)
+                .ToList();
 
-            return View(countries.OrderBy(c => c.CountryName).ToList());
+            return View(model);
         }
 
         public IActionResult Details(string countryName)

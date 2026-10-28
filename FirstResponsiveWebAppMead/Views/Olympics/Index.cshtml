@@ -1,4 +1,4 @@
-﻿@model List<FirstResponsiveWebAppMead.Models.OlympicCountry>
+﻿@model FirstResponsiveWebAppMead.Models.OlympicsViewModel
 
 @{
     ViewData["Title"] = "Olympic Flags";
@@ -10,24 +10,39 @@
     <aside>
         <h3>Filter by Game</h3>
 
-        <a asp-action="Filter" asp-route-game="ALL">ALL</a>
-        <a asp-action="Filter" asp-route-game="Summer Olympics">Summer Olympics</a>
-        <a asp-action="Filter" asp-route-game="Winter Olympics">Winter Olympics</a>
-        <a asp-action="Filter" asp-route-game="Paralympics">Paralympics</a>
-        <a asp-action="Filter" asp-route-game="Youth Olympic Games">Youth Olympic Games</a>
+        <a asp-controller="Olympics" asp-action="Index"
+           asp-route-game="ALL" asp-route-category="@Model.Category">ALL</a>
+        <a asp-controller="Olympics" asp-action="Index"
+           asp-route-game="Summer Olympics" asp-route-category="@Model.Category">Summer Olympics</a>
+        <a asp-controller="Olympics" asp-action="Index"
+           asp-route-game="Winter Olympics" asp-route-category="@Model.Category">Winter Olympics</a>
+        <a asp-controller="Olympics" asp-action="Index"
+           asp-route-game="Paralympics" asp-route-category="@Model.Category">Paralympics</a>
+        <a asp-controller="Olympics" asp-action="Index"
+           asp-route-game="Youth Olympic Games" asp-route-category="@Model.Category">Youth Olympic Games</a>
 
         <h3>Filter by Sport Catagory</h3>
 
-        <a asp-action="Filter" asp-route-game="@ViewBag.Game" asp-route-category="ALL">ALL</a>
-        <a asp-action="Filter" asp-route-game="@ViewBag.Game" asp-route-category="Curling">Curling</a>
-        <a asp-action="Filter" asp-route-game="@ViewBag.Game" asp-route-category="Bobsleigh">Bobsleigh</a>
-        <a asp-action="Filter" asp-route-game="@ViewBag.Game" asp-route-category="Diving">Diving</a>
-        <a asp-action="Filter" asp-route-game="@ViewBag.Game" asp-route-category="Road Cycling">Road Cycling</a>
-        <a asp-action="Filter" asp-route-game="@ViewBag.Game" asp-route-category="Cycling">Cycling</a>
-        <a asp-action="Filter" asp-route-game="@ViewBag.Game" asp-route-category="Archery">Archery</a>
-        <a asp-action="Filter" asp-route-game="@ViewBag.Game" asp-route-category="Canoe Sprint">Canoe Sprint</a>
-        <a asp-action="Filter" asp-route-game="@ViewBag.Game" asp-route-category="Breakdancing">Breakdancing</a>
-        <a asp-action="Filter" asp-route-game="@ViewBag.Game" asp-route-category="Skateboarding">Skateboarding</a>
+        <a asp-controller="Olympics" asp-action="Index"
+           asp-route-game="@Model.Game" asp-route-category="ALL">ALL</a>
+        <a asp-controller="Olympics" asp-action="Index"
+           asp-route-game="@Model.Game" asp-route-category="Curling">Curling</a>
+        <a asp-controller="Olympics" asp-action="Index"
+           asp-route-game="@Model.Game" asp-route-category="Bobsleigh">Bobsleigh</a>
+        <a asp-controller="Olympics" asp-action="Index"
+           asp-route-game="@Model.Game" asp-route-category="Diving">Diving</a>
+        <a asp-controller="Olympics" asp-action="Index"
+           asp-route-game="@Model.Game" asp-route-category="Road Cycling">Road Cycling</a>
+        <a asp-controller="Olympics" asp-action="Index"
+           asp-route-game="@Model.Game" asp-route-category="Cycling">Cycling</a>
+        <a asp-controller="Olympics" asp-action="Index"
+           asp-route-game="@Model.Game" asp-route-category="Archery">Archery</a>
+        <a asp-controller="Olympics" asp-action="Index"
+           asp-route-game="@Model.Game" asp-route-category="Canoe Sprint">Canoe Sprint</a>
+        <a asp-controller="Olympics" asp-action="Index"
+           asp-route-game="@Model.Game" asp-route-category="Breakdancing">Breakdancing</a>
+        <a asp-controller="Olympics" asp-action="Index"
+           asp-route-game="@Model.Game" asp-route-category="Skateboarding">Skateboarding</a>
 
         <h3>Favorites</h3>
 
@@ -42,7 +57,7 @@
         <p>Move your mouse over a flag to see its country, game, and sport category.</p>
 
         <div class="grid">
-            @foreach (var country in Model)
+            @foreach (var country in Model.Countries)
             {
                 <div class="flag-card">
                     <a asp-controller="Olympics"

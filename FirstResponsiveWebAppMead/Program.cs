@@ -39,6 +39,11 @@ namespace FirstResponsiveWebAppMead
                 pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
             app.MapControllerRoute(
+                name: "olympics",
+                pattern: "Olympics/Games/{game?}/{category?}",
+                defaults: new { controller = "Olympics", action = "Index" });
+
+            app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
